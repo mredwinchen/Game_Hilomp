@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<title>智优财 - 骰子游戏</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta http-equiv="Cache-Control" content="no-siteapp">
+	<meta name="format-detection" content="telephone=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-title" content="Mredwinchen">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="x5-fullscreen" content="true" />
+	<meta name="x5-orientation" content="landscape" />
+	<meta name="x5-page-mode" content="app" />
+	<meta name="full-screen" content="yes">
+	<meta name="screen-orientation" content="landscape">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+	<div class="anyway"></div>
+	<div class="loading" id="loading"></div>
+	<div class="bagin">
+		<span class="cdt-cell"><span class="cdt-num" id="bcdt" defSec="10"></span></span>
+	</div>
+	<div class="game">
+		<header class="header">
+			<div class="header-content" id="lastTime"></div>
+			<div class="history">
+				<div class="history-content">
+					<ul id="historyList"></ul>
+				</div>
+			</div>
+			<div class="nav">
+				<a href="javascript:;" class="nav-btn"></a>
+				<ul class="nav-list" id="navList"></ul>
+			</div>
+			<div class="fullpage" id="fullpage">
+				<a href="javascript:;" class="fullpage-btn"></a>
+			</div>
+		</header>
+		<div class="player-list" id="autoPlayer"></div>
+		<div class="content">
+			<ul class="box" id="gameContent"></ul>
+		</div>
+		<footer class="footer">
+			<div class="footer-content">
+				<a href="javascript:;" class="yel-btn" id="link"></a>
+				<div class="datagroup">
+					<span class="name" id="name"></span>
+					<span class="xingbi" id="xingbi"></span>
+				</div>
+				<div class="btngroup" id="btnGroup"></div>
+			</div>
+		</footer>
+		<div id="ruleModal"></div>
+	</div>
+	<!-- build:js main.min.js-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/main.js"></script>
+	<!-- endbuild -->
+</body>
+
+</html>
