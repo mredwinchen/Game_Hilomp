@@ -1,3 +1,8 @@
+/* ProjectNme : ZYC18.COM Game_Hilomp 
+   Author :Edwin Chen
+   LastEditTime : 2016/07/29
+   FileType : Javascript
+*/
 //判断手机横竖屏
 function anyWay() {
 	var anywayTips = $(".anyway");
@@ -144,7 +149,7 @@ function secondCounter1(defSec, func, dispObj) {
 
 //游戏初始化
 function initializeGame() {
-	//$("body").append('<div class="countdown"><p>' + gameObj.playerState.name + ' 欢迎回来，当前<span id="nowGameTime"></span>期</p><span class="cdt-cell">游戏即将开始，请稍后(<span class="cdt-num" id="cdt" defSec="10"></span>)</span></div>')
+	$("body").append('<div class="countdown"><p>' + gameObj.playerState.name + ' 欢迎回来，当前<span id="nowGameTime"></span>期</p><span class="cdt-cell">游戏即将开始，请稍后(<span class="cdt-num" id="cdt" defSec="10"></span>)</span></div>')
 	$("#name").html(gameObj.playerState.name);
 	$("#xingbi").html(gameObj.playerState.xingbi);
 	$("#nowGameTime").html(gameObj.gameTime);
@@ -161,7 +166,7 @@ function initializeGame() {
 	var liLen = 20;
 	for (var l = 0; l < liLen; l++) {
 		var j = l + 1;
-		$("#gameContent").append('<li>' + j + '</li>')
+		$("#gameContent").append('<li id="b' + j + '"><div class="bottom-box"></div><span class="xb-icon"><span></li>');
 	}
 	var Navlength = sysObj.nav.length;
 	for (var n = 0; n < Navlength; n++) {
@@ -176,6 +181,10 @@ function initializeGame() {
 		modaltitle: '游戏规则',
 		modalcontent: sysObj.rule,
 	});
+	var firBtn = $(".btngroup").find("button:first");
+	firBtn.addClass("active");
+	var firBtnVal = firBtn.val();
+	$("#botPourMoney").val(firBtnVal);
 }
 initializeGame();
 
@@ -203,7 +212,7 @@ interactionGame();
 
 //游戏进行Step
 
-//secondCounter1(10, "step1()", "cdt");
+secondCounter1(10, "step1()", "cdt");
 
 function step1() {
 	$(".countdown").hide();
@@ -213,17 +222,30 @@ function step1() {
 function step2() {
 	$(".bagin").show();
 	secondCounter1(10, "step3()", "bcdt");
+	step4();
 }
 
 function step3() {
 	$(".bagin").hide();
-	step4();
 }
 
 function step4() {
+	var bpm = parseInt($("#botPourMoney").val()); 
 	$(".content").find("li").click(function () {
-		var liVal = $(this).text();
-		console.log(liVal);
+		$(this).find(".bottom-box").show();
+		$(this).find(".xb-icon").show();
+		
+		$(this).append('');
+		$(this).find(".bottom-box").html(bpm);
+		$(this).click(function(){
+		    bpm++;
+			$(this).find(".bottom-box").html(bpm);
+		});
+	});
+	$(".btngroup").find("button").click(function () {
+		$("button").removeClass("active");
+		$(this).addClass("active");
+		var GetNum = $(this).val();
+		$("#botPourMoney").val(GetNum);
 	});
 }
-step4();

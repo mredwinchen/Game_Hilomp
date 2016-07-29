@@ -1,9 +1,14 @@
+/* ProjectNme : ZYC18.COM Game_Hilomp 
+   Author :Edwin Chen
+   LastEditTime : 2016/07/29
+   FileType : Javascript
+*/
 var gameObj = {
 	debug: true,
 	gameTime: 110,
 	playerState: {
-		name: "13422365678",
-		xingbi: 5000
+		name: "Mredwinchenv",
+		xingbi: 23345000
 	},
 	autoPlayer: [
 		{
