@@ -4,13 +4,13 @@
    FileType : Javascript
 */
 var gameObj = {
-	startTime : 10,
-    cathecticTime :20,
+	startTime : 3,
+    cathecticTime :3,
 	debug: true,
 	gameTime: 110,
 	playerState: {
 		name: "Mredwinchenv",
-		xingbi: 1000
+		xingbi: 100000000
 	},
 	autoPlayer: [
 		{
