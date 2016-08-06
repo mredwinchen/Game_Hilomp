@@ -93,7 +93,7 @@ body {
 	height: 62px;
 	max-width: 736px;
 	max-height: 62px;
-	position: fixed;
+	position: absolute;
 	background: linear-gradient(to right, rgba(0, 0, 0, .0), rgba(0, 0, 0, .8), rgba(0, 0, 0, .0));
 	z-index: 2;
 	top: 43%;
@@ -108,6 +108,28 @@ body {
 		.cdt-num {
 			color: #ffdf00;
 		}
+	}
+}
+
+.get-xb-box{
+	width: 100%;
+	height: 62px;
+	max-width: 736px;
+	max-height: 62px;
+	position: absolute;
+	background: linear-gradient(to right, rgba(0, 0, 0, .0), rgba(0, 0, 0, .8), rgba(0, 0, 0, .0));
+	z-index: 2;
+	top: 43%;
+	text-align: center;
+	color: #efd29d;
+	line-height: 10px;
+	font-size: 13px;
+	.yel-btn{
+		position: relative !important;
+		margin: 0 auto;
+		top: -8px !important;
+		width: 63px !important;
+		height: 30px !important;
 	}
 }
 
@@ -426,18 +448,6 @@ body {
 		background-repeat: no-repeat;
 		background-image: url(../images/footer-bg.png);
 		.footer-content {
-			.yel-btn {
-				display: block;
-				position: absolute;
-				width: 9%;
-				height: 39%;
-				left: 0.3%;
-				top: 43%;
-				background-size: 100% 100%;
-				background-repeat: no-repeat;
-				background-position: center center;
-				background-image: url(../images/yel-btn.png);
-			}
 			.datagroup {
 				position: absolute;
 				top: 35%;
@@ -504,6 +514,18 @@ body {
 				}
 			}
 		}
+	}
+	.yel-btn {
+		display: block;
+		position: absolute;
+		width: 9%;
+		height: 39%;
+		left: 0.3%;
+		top: 43%;
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url(../images/yel-btn.png);
 	}
 	.header-btn {
 		width: 100%;

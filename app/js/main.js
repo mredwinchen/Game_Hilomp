@@ -149,7 +149,7 @@ function secondCounter1(defSec, func, dispObj) {
 
 //游戏初始化
 function initializeGame() {
-	$("body").append('<div class="countdown"><p>' + gameObj.playerState.name + ' 欢迎回来，当前<span id="nowGameTime"></span>期</p><span class="cdt-cell">游戏即将开始，请稍后(<span class="cdt-num" id="cdt" defSec="10"></span>)</span></div>')
+	$(".game").append('<div class="countdown"><p>' + gameObj.playerState.name + ' 欢迎回来，当前<span id="nowGameTime"></span>期</p><span class="cdt-cell">游戏即将开始，请稍后(<span class="cdt-num" id="cdt" defSec="10"></span>)</span></div>')
 	$("#name").html(gameObj.playerState.name);
 	$("#xingbi").html(gameObj.playerState.xingbi);
 	$("#nowGameTime").html(gameObj.gameTime);
@@ -166,7 +166,7 @@ function initializeGame() {
 	var liLen = 20;
 	for (var l = 0; l < liLen; l++) {
 		var j = l + 1;
-		$("#gameContent").append('<li id="b' + j + '"><div class="bottom-box"></div><span class="xb-icon"><span></li>');
+		$("#gameContent").append('<li id="b' + j + '"><div class="bottom-box">0</div><span class="xb-icon"><span></li>');
 	}
 	var Navlength = sysObj.nav.length;
 	for (var n = 0; n < Navlength; n++) {
@@ -187,6 +187,10 @@ function initializeGame() {
 	$("#botPourMoney").val(firBtnVal);
 }
 initializeGame();
+
+function showGetXb() {
+     $(".game").append('<div class="get-xb-box"><p>亲爱的'+ gameObj.playerState.name +',您的星币不足,请马上充值</p><a href="'+ sysObj.getXingbi +'" class="yel-btn"></a></div>');
+}
 
 //游戏交互
 function interactionGame() {
@@ -212,7 +216,7 @@ interactionGame();
 
 //游戏进行Step
 
-secondCounter1(10, "step1()", "cdt");
+secondCounter1(gameObj.startTime, "step1()", "cdt");
 
 function step1() {
 	$(".countdown").hide();
@@ -221,7 +225,7 @@ function step1() {
 
 function step2() {
 	$(".bagin").show();
-	secondCounter1(10, "step3()", "bcdt");
+	secondCounter1(gameObj.cathecticTime, "step3()", "bcdt");
 	step4();
 }
 
@@ -230,18 +234,30 @@ function step3() {
 }
 
 function step4() {
-	var bpm = parseInt($("#botPourMoney").val()); 
-	$(".content").find("li").click(function () {
-		$(this).find(".bottom-box").show();
-		$(this).find(".xb-icon").show();
-		
-		$(this).append('');
-		$(this).find(".bottom-box").html(bpm);
-		$(this).click(function(){
-		    bpm++;
-			$(this).find(".bottom-box").html(bpm);
-		});
+
+	$(".content").find("li").unbind("click").click(function () {
+        if(parseInt($('#xingbi').text()) == 0 || parseInt($('#xingbi').text()) < 0){
+            showGetXb();
+        }else{
+            $(this).find(".bottom-box").show();
+            $(this).find(".xb-icon").show();
+            var bpm = parseInt($("#botPourMoney").val());
+            var tXb = $(this).find(".bottom-box").text();
+            var tBpm = parseInt(tXb) + parseInt(bpm);
+            $(this).find(".bottom-box").html(tBpm);
+            var MyXb = $('#xingbi').text();
+            var NowMyXb = parseInt(MyXb) - parseInt(bpm);
+            $('#xingbi').html(NowMyXb);
+            console.log("按钮: "+bpm);
+            console.log("原投注: "+tXb);
+            console.log("现在投注: "+tBpm);
+            console.log("原星币: "+MyXb);
+            console.log("现星币: "+NowMyXb);
+            console.log(" ");
+        }
 	});
+
+
 	$(".btngroup").find("button").click(function () {
 		$("button").removeClass("active");
 		$(this).addClass("active");
