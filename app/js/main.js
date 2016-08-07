@@ -158,7 +158,8 @@ function initializeGame() {
     $("#xingbi").html(gameObj.playerState.xingbi);
     $("#nowGameTime").html(gameObj.gameTime);
     $("#link").attr("href", sysObj.getXingbi)
-    var Objlength = gameObj.autoPlayer.length;
+    var Objlength = Math.floor(Math.random() * 6 + 1);
+    //var Objlength = gameObj.autoPlayer.length;
     for (var i = 0; i < Objlength; i++) {
         $("#autoPlayer").append('<div class="player"><span class="player-num"><span>' + gameObj.autoPlayer[i].xingbi + '</span>万</span></div>');
     }
@@ -193,7 +194,7 @@ function initializeGame() {
 initializeGame();
 
 function showGetXb() {
-    $(".game").append('<div class="get-xb-box"><div class="box-content"><p>亲爱的 '+ gameObj.playerState.name +' ,您的星币不足,马上赚星币!</p><a href="'+ sysObj.getXingbi +'" class="yel-btn"></a></div></div>');
+    $(".game").append('<div class="get-xb-box"><div class="box-content"><p>亲爱的 ' + gameObj.playerState.name + ' ,您的星币不足,马上赚星币!</p><a href="' + sysObj.getXingbi + '" class="yel-btn"></a></div></div>');
     $(".get-xb-box").click(function () {
         $(this).remove();
     })
@@ -250,32 +251,35 @@ function gameCathectic() {
 
 //骰子交互
 function gameDice() {
-    $(function(){
-        var dice = $("#dice");
-        dice.click(function(){
-            dice.attr("class","dice");//清除上次动画后的点数
-            dice.css("cursor","default");
-            $(".wrap").append("<div id='dice_mask'></div>");//加遮罩
-            var num = Math.floor(Math.random()*6+1);//产生随机数1-6
-            dice.animate({left: '+2px'}, 100,function(){
-                dice.addClass("dice_t");
-            }).delay(200).animate({top:'-2px'},100,function(){
-                dice.removeClass("dice_t").addClass("dice_s");
-            }).delay(200).animate({opacity: 'show'},600,function(){
-                dice.removeClass("dice_s").addClass("dice_e");
-            }).delay(100).animate({left:'-2px',top:'2px'},100,function(){
-                dice.removeClass("dice_e").addClass("dice_"+num);
-                $("#result").html("您掷得点数是<span>"+num+"</span>");
-                dice.css('cursor','pointer');
-                $("#dice_mask").remove();//移除遮罩
-            });
+    $(".game").append('<div class="dice-content"><div class="content-cell"><div id="dice1" class="dice dice_1"></div> <div id="dice2" class="dice dice_1"></div><p class="cell-txt">本局点数是 <span id="result1"></span>,<span id="result2"></span></p></div></div>');
+    function diceAn(id, mask, result) {
+        var dice = $(id);
+        dice.attr("class", "dice");//清除上次动画后的点数
+        dice.css("cursor", "default");
+        $(".wrap").append("<div id='" + mask + "'></div>");//加遮罩
+        var num = Math.floor(Math.random() * 6 + 1);//产生随机数1-6
+        dice.animate({left: '+2px'}, 100, function () {
+            dice.addClass("dice_t");
+        }).delay(200).animate({top: '-2px'}, 100, function () {
+            dice.removeClass("dice_t").addClass("dice_s");
+        }).delay(200).animate({opacity: 'show'}, 600, function () {
+            dice.removeClass("dice_s").addClass("dice_e");
+        }).delay(100).animate({left: '-2px', top: '2px'}, 100, function () {
+            dice.removeClass("dice_e").addClass("dice_" + num);
+            $(".cell-txt").show();
+            $(result).html(num);
+            dice.css('cursor', 'pointer');
+            $("#" + mask + "").remove();//移除遮罩
         });
-    });
+    }
+
+    diceAn("#dice1", "diceMask1", "#result1")
+    diceAn("#dice2", "diceMask2", "#result2")
 }
-gameDice();
+
 //游戏进行Step
 
-//secondCounter1(gameObj.startTime, "step1()", "cdt");
+secondCounter1(gameObj.startTime, "step1()", "cdt");
 
 function step1() {
     $(".countdown").hide();
@@ -290,5 +294,6 @@ function step2() {
 
 function step3() {
     $(".bagin").hide();
-
+    gameDice();
 }
+

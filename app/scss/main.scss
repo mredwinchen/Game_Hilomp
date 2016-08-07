@@ -751,7 +751,16 @@ body {
       text-align: center;
       color: #ffffff;
       position: relative;;
-      top:35%;
+      top:39%;
+      .cell-txt{
+        display: none;
+        font-size: 12px;
+        padding: 5px 0px;
+        span{
+          color: #ffaa00;
+          padding: 0px 5px;
+        }
+      }
       .wrap {
         width: 90px;
         height: 90px;
@@ -763,6 +772,7 @@ body {
         height: 90px;
         background: url(../images/dice-bg.png) no-repeat;
         margin: 0 auto;
+        display: inline-block;
       }
       .dice_1 {
         background-position: -5px -4px
