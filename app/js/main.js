@@ -3,6 +3,41 @@
  LastEditTime : 2016/07/29
  FileType : Javascript
  */
+
+//判断浏览器
+var browser = {
+    versions: function () {
+        var u = navigator.userAgent, app = navigator.appVersion;
+        return {         //移动终端浏览器版本信息
+            trident: u.indexOf('Trident') > -1, //IE内核
+            presto: u.indexOf('Presto') > -1, //opera内核
+            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+            iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+            iPad: u.indexOf('iPad') > -1, //是否iPad
+            webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+        };
+    }(),
+    language: (navigator.browserLanguage || navigator.language).toLowerCase()
+}
+
+
+if (browser.versions.mobile) {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        $("body").addClass("wechat");
+        setTimeout(function () {
+            $(".anyway").hide();
+        },3000);
+    }
+    if (ua.match(/WeiBo/i) == "weibo") {}
+    if (ua.match(/QQ/i) == "qq") {}
+    if (browser.versions.ios) {}
+    if (browser.versions.android) {}
+}
 //判断手机横竖屏
 function anyWay() {
     var anywayTips = $(".anyway");
@@ -26,7 +61,7 @@ function anyWay() {
         vertical();
     });
     //判断设备宽度
-    var width = window.innerWidth || document.documentElement.clientWidth;
+    /*var width = window.innerWidth || document.documentElement.clientWidth;
     if (width < 768) {
         console.log("您在使用手机浏览");
     } else if (width >= 768) {
@@ -40,7 +75,7 @@ function anyWay() {
         anywayTips.hide();
     } else {
         console.log("找不到你的设备尺寸");
-    }
+    }*/
 }
 anyWay();
 
@@ -301,44 +336,19 @@ function step3() {
     setTimeout(function () {
         var diceNum1 = $("#result1").text();
         var diceNum2 = $("#result2").text();
-        console.log(diceNum1);
-        console.log(diceNum2);
         var AXb = $("#xingbi").text();
-        var GXb1 = 0,
-            GXb3 = 0,
-            GXb4 = 0,
-            GXb5 = 0,
-            GXb6 = 0,
-            GXb7 = 0,
-            GXb8 = 0,
-            GXb9 = 0,
-            GXb10 = 0,
-            GXb11 = 0,
-            GXb12 = 0,
-            GXb13 = 0,
-            GXb14 = 0,
-            GXb15 = 0,
-            GXb16 = 0,
-            GXb17 = 0,
-            GXb18 = 0,
-            GXb19 = 0,
-            GXb20 = 0;
-        console.log(AXb);
+        var GXb1 = 0, GXb3 = 0, GXb4 = 0, GXb5 = 0, GXb6 = 0, GXb7 = 0, GXb8 = 0, GXb9 = 0, GXb10 = 0, GXb11 = 0, GXb12 = 0, GXb13 = 0, GXb14 = 0, GXb15 = 0, GXb16 = 0, GXb17 = 0, GXb18 = 0, GXb19 = 0, GXb20 = 0;
         $(".dice-content").remove();
         if (parseInt(diceNum1) + parseInt(diceNum2) == 2) {
             if (parseInt($("#b4").find(".bottom-box").text()) > 0) {
                 var TXb4 = parseInt($("#b4").find(".bottom-box").text());
                 var GXb4 = TXb4 * 50;
-                console.log(TXb4);
-                console.log(GXb4);
                 $("#b4").find(".win-icon").show();
             }
             if (diceNum1 == diceNum2) {
                 if (parseInt($("#b15").find(".bottom-box").text()) > 0) {
                     var TXb15 = parseInt($("#b15").find(".bottom-box").text());
                     var GXb15 = TXb15 * 50;
-                    console.log(TXb15);
-                    console.log(GXb15);
                     $("#b15").find(".win-icon").show();
                 }
             }
@@ -346,24 +356,18 @@ function step3() {
             if (parseInt($("#b5").find(".bottom-box").text()) > 0) {
                 var TXb5 = parseInt($("#b5").find(".bottom-box").text());
                 var GXb5 = TXb5 * 18;
-                console.log(TXb5);
-                console.log(GXb5);
                 $("#b5").find(".win-icon").show();
             }
         } else if (parseInt(diceNum1) + parseInt(diceNum2) == 4) {
             if (parseInt($("#b6").find(".bottom-box").text()) > 0) {
                 var TXb6 = parseInt($("#b6").find(".bottom-box").text());
                 var GXb6 = TXb6 * 14;
-                console.log(TXb6);
-                console.log(GXb6);
                 $("#b6").find(".win-icon").show();
             }
             if (diceNum1 == diceNum2) {
                 if (parseInt($("#b16").find(".bottom-box").text()) > 0) {
                     var TXb16 = parseInt($("#b16").find(".bottom-box").text());
                     var GXb16 = TXb16 * 50;
-                    console.log(TXb16);
-                    console.log(GXb16);
                     $("#b16").find(".win-icon").show();
                 }
             }
@@ -371,24 +375,18 @@ function step3() {
             if (parseInt($("#b7").find(".bottom-box").text()) > 0) {
                 var TXb7 = parseInt($("#b7").find(".bottom-box").text());
                 var GXb7 = TXb7 * 12;
-                console.log(TXb7);
-                console.log(GXb7);
                 $("#b7").find(".win-icon").show();
             }
         } else if (parseInt(diceNum1) + parseInt(diceNum2) == 6) {
             if (parseInt($("#b8").find(".bottom-box").text()) > 0) {
                 var TXb8 = parseInt($("#b8").find(".bottom-box").text());
                 var GXb8 = TXb8 * 8;
-                console.log(TXb8);
-                console.log(GXb8);
                 $("#b8").find(".win-icon").show();
             }
             if (diceNum1 == diceNum2) {
                 if (parseInt($("#b17").find(".bottom-box").text()) > 0) {
                     var TXb17 = parseInt($("#b17").find(".bottom-box").text());
                     var GXb17 = TXb17 * 50;
-                    console.log(TXb17);
-                    console.log(GXb17);
                     $("#b17").find(".win-icon").show();
                 }
             }
@@ -396,24 +394,18 @@ function step3() {
             if (parseInt($("#b9").find(".bottom-box").text()) > 0) {
                 var TXb9 = parseInt($("#b9").find(".bottom-box").text());
                 var GXb9 = TXb9 * 6;
-                console.log(TXb9);
-                console.log(GXb9);
                 $("#b9").find(".win-icon").show();
             }
         } else if (parseInt(diceNum1) + parseInt(diceNum2) == 8) {
             if (parseInt($("#b10").find(".bottom-box").text()) > 0) {
                 var TXb10 = parseInt($("#b10").find(".bottom-box").text());
                 var GXb10 = TXb10 * 8;
-                console.log(TXb10);
-                console.log(GXb10);
                 $("#b10").find(".win-icon").show();
             }
             if (diceNum1 == diceNum2) {
                 if (parseInt($("#b18").find(".bottom-box").text()) > 0) {
                     var TXb18 = parseInt($("#b18").find(".bottom-box").text());
                     var GXb18 = TXb18 * 50;
-                    console.log(TXb18);
-                    console.log(GXb18);
                     $("#b18").find(".win-icon").show();
                 }
             }
@@ -421,24 +413,18 @@ function step3() {
             if (parseInt($("#b11").find(".bottom-box").text()) > 0) {
                 var TXb11 = parseInt($("#b11").find(".bottom-box").text());
                 var GXb11 = TXb11 * 12;
-                console.log(TXb11);
-                console.log(GXb11);
                 $("#b11").find(".win-icon").show();
             }
         } else if (parseInt(diceNum1) + parseInt(diceNum2) == 10) {
             if (parseInt($("#b12").find(".bottom-box").text()) > 0) {
                 var TXb12 = parseInt($("#b12").find(".bottom-box").text());
                 var GXb12 = TXb12 * 14;
-                console.log(TXb12);
-                console.log(GXb12);
                 $("#b12").find(".win-icon").show();
             }
             if (diceNum1 == diceNum2) {
                 if (parseInt($("#b19").find(".bottom-box").text()) > 0) {
                     var TXb19 = parseInt($("#b19").find(".bottom-box").text());
                     var GXb19 = TXb19 * 50;
-                    console.log(TXb19);
-                    console.log(GXb19);
                     $("#b19").find(".win-icon").show();
                 }
             }
@@ -446,24 +432,18 @@ function step3() {
             if (parseInt($("#b13").find(".bottom-box").text()) > 0) {
                 var TXb13 = parseInt($("#b13").find(".bottom-box").text());
                 var GXb13 = TXb13 * 18;
-                console.log(TXb13);
-                console.log(GXb13);
                 $("#b13").find(".win-icon").show();
             }
         } else if (parseInt(diceNum1) + parseInt(diceNum2) == 12) {
             if (parseInt($("#b14").find(".bottom-box").text()) > 0) {
                 var TXb14 = parseInt($("#b14").find(".bottom-box").text());
                 var GXb14 = TXb14 * 50;
-                console.log(TXb14);
-                console.log(GXb14);
                 $("#b14").find(".win-icon").show();
             }
             if (diceNum1 == diceNum2) {
                 if (parseInt($("#b20").find(".bottom-box").text()) > 0) {
                     var TXb20 = parseInt($("#b20").find(".bottom-box").text());
                     var GXb20 = TXb20 * 50;
-                    console.log(TXb20);
-                    console.log(GXb20);
                     $("#b20").find(".win-icon").show();
                 }
             }
@@ -472,24 +452,32 @@ function step3() {
             if (parseInt($("#b3").find(".bottom-box").text()) > 0) {
                 var TXb3 = parseInt($("#b3").find(".bottom-box").text());
                 var GXb3 = TXb3 * 2;
-                console.log(TXb3);
-                console.log(GXb3);
                 $("#b3").find(".win-icon").show();
             }
         } else if (parseInt(diceNum1) + parseInt(diceNum2) <= 12) {
             if (parseInt($("#b1").find(".bottom-box").text()) > 0) {
                 var TXb1 = parseInt($("#b1").find(".bottom-box").text());
                 var GXb1 = TXb1 * 2;
-                console.log(TXb1);
-                console.log(GXb1);
                 $("#b1").find(".win-icon").show();
             }
         }
         var AGXb = GXb1 + GXb3 + GXb4 + GXb5 + GXb6 + GXb7 + GXb8 + GXb9 + GXb10 + GXb11 + GXb12 + GXb13 + GXb14 + GXb15 + GXb16 + GXb17 + GXb18 + GXb19 + GXb20;
-        var NAXb = AGXb +parseInt(AXb);
+        var NAXb = AGXb + parseInt(AXb);
         $("#xingbi").html(NAXb);
-        console.log(AGXb);
-        console.log(NAXb);
+        setTimeout(function () {
+            /*$.ajax({
+             type: "POST",
+             url: "http://192.168.1.24:3000/",
+             data: {},
+             success: function (result) {
+             if (result.success) {
+
+             }
+             else {
+             window.location.reload();
+             }
+             }
+             });*/
+        }, 2000)
     }, 3000);
 }
-

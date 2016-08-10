@@ -4,7 +4,7 @@
    FileType : Javascript
 */
 var gameObj = {
-	startTime : 10,
+	startTime : 30,
     cathecticTime :10,
 	debug: true,
 	gameTime: 110,

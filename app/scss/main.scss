@@ -199,6 +199,7 @@ body {
       top: 0;
       left: 2.6%;
       margin-top: 5px;
+      z-index: 2;
       .nav-btn {
         display: block;
         width: 30px;
@@ -247,6 +248,7 @@ body {
       top: 0;
       right: 2.6%;
       margin-top: 5px;
+      z-index: 2;
       .fullpage-btn {
         display: block;
         width: 30px;
@@ -499,6 +501,7 @@ body {
     width: 100%;
     position: absolute;
     top: 0;
+    z-index: 2;
     i {
       display: block;
       position: relative;
@@ -920,5 +923,36 @@ body {
   }
   .game .footer .footer-content .btngroup {
     top: 37%;
+  }
+}
+
+.wechat {
+  .player-list {
+    .player {
+      width: 8.5%;
+      height: 55px;
+      margin: 4px 3px;
+    }
+    .player:nth-child(1) {
+      top: 10px;
+    }
+    .player:nth-child(2) {
+      top: 75px;
+    }
+    .player:nth-child(3) {
+      top: 140px;
+    }
+    .player:nth-child(4) {
+      top: 10px;
+    }
+    .player:nth-child(5) {
+      top: 75px;
+    }
+    .player:nth-child(6) {
+      top: 140px;
+    }
+  }
+  .content {
+    margin: 7% auto;
   }
 }
